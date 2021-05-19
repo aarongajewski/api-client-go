@@ -1,6 +1,17 @@
 version: 2.1
-jobs:
+
+parameters:
+  is_rollback:
+    type: boolean
+    default: false
+    
+workflows:
   rollback:
+    when: << pipeline.parameters.is_rollback >>
+    jobs:
+      - trigger_rollback
+jobs:
+  trigger_rollback:
     docker:
       - image: circleci/golang:1.15.8
     steps:
@@ -8,7 +19,3 @@ jobs:
       - run:
           command: |
             echo "Rolling back changes to previous state..."
-workflows:
-  build:
-    jobs:
-      - rollback
