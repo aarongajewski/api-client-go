@@ -1,6 +1,6 @@
 module github.com/firehydrant/api-client-go
 
-// Test Change 1
+// Example change
 
 require (
 	github.com/go-openapi/errors v0.18.0
